@@ -22,7 +22,7 @@ public class CreateDemo {
 		try {
 			// create the object
 			Instructor tempInstructor1 = new Instructor("Chad", "Darby", "darby@luv2code");
-			Instructor tempInstructor2 = new Instructor("Madhu", "Patel", "mahu@luv2code");
+			Instructor tempInstructor2 = new Instructor("Madhu", "Patel", "madhu@luv2code");
 
 			InstructorDetail tempInstructorDetail1 = new InstructorDetail("http://www.luv2code.com/youtube",
 					"Luv 2 code!!!");

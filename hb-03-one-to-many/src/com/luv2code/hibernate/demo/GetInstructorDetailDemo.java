@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 import com.luv2code.hibernate.demo.entity.Instructor;
 import com.luv2code.hibernate.demo.entity.InstructorDetail;
 
-public class CreateDemo {
+public class GetInstructorDetailDemo {
 
 	public static void main(String[] args) {
 
@@ -20,32 +20,22 @@ public class CreateDemo {
 		Transaction transaction = null;
 
 		try {
-			// create the object
-			Instructor tempInstructor1 = new Instructor("Chad", "Darby", "darby@luv2code");
-			Instructor tempInstructor2 = new Instructor("Madhu", "Patel", "madhu@luv2code");
-
-			InstructorDetail tempInstructorDetail1 = new InstructorDetail("http://www.luv2code.com/youtube",
-					"Luv 2 code!!!");
-			InstructorDetail tempInstructorDetail2 = new InstructorDetail("http://www.youtube.com/madhu.patel",
-					"Guitar");
-
-			// associate the object
-			tempInstructor1.setInstructorDetail(tempInstructorDetail1);
-			tempInstructor2.setInstructorDetail(tempInstructorDetail2);
-
 			// create session
 			session = factory.getCurrentSession();
+
 			// start a transaction
 			transaction = session.beginTransaction();
 
-			// save the object
-			System.out.println("Saving the Instructor object... " + tempInstructor1);
-			System.out.println("Saving the Instructor object... " + tempInstructor2);
+			// get the instructor detail object using primary key/id
+			int id = 2;
+			InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
 
-			// save the instructor
-			// NOTE: this will also save the detail object because of Cascadetype.ALL
-			session.save(tempInstructor1);
-			session.save(tempInstructor2);
+			// print the instructor detail
+			System.out.println("InstructorDetail : " + instructorDetail);
+
+			// print the associated instructor
+			if (instructorDetail != null)
+				System.out.println("Instructor : " + instructorDetail.getInstructor());
 
 			// commit transaction
 			transaction.commit();
